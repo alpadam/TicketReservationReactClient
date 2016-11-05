@@ -19,9 +19,9 @@ let todoReducer = function(todos = [], action) {
           todo;
       });
     case 'DELETE_TODO':
-    return todos.filter((todo) => {
-      return todo.id !== action.todoId;
-    });
+      return todos.filter((todo) => {
+        return todo.id !== action.todoId;
+      });
     default:
       return todos;
   }
