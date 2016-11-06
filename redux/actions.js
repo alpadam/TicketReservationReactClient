@@ -23,13 +23,6 @@ let actions = {
       id: Math.round(Math.random() * 100)
     }
   },
-  //
-  signInUser: function(){
-    return {
-      type: 'SIGN_IN_USER'
-    }
-  },
-  //
   signIn: function(credentials){
     return {
       type: 'SIGN_IN_REQUEST',
@@ -45,6 +38,23 @@ let actions = {
   signInFailure: function(errorMessage){
     return {
       type: 'SIGN_IN_FAILURE',
+      errorMessage: errorMessage
+    }
+  },
+  getEventList: function(){
+    return {
+      type: 'GET_EVENTT_LIST',
+    }
+  },
+  getEventListSuccess: function(events){
+    return {
+      type: 'GET_EVENT_LIST_SUCCESS',
+      events
+    }
+  },
+  getEventListFailure: function(errorMessage){
+    return {
+      type: 'GET_EVENT_LIST_FAILURE',
       errorMessage: errorMessage
     }
   }

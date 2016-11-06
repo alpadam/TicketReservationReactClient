@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../redux/actions';
 
-class Login extends React.Component {
+class Login extends Component {
 
   handleFormSubmit(event) {
 
@@ -47,15 +47,15 @@ class Login extends React.Component {
 
   render() {
     return(
-      <div className="container">
+
         <div className="col-md-6 col-md-offset-3">
-          <h2 className="text-center">Log In</h2>
+          <h2 className="text-center">Log In</h2><br/>
             <input name="username" ref="username" className="form-control" type="text" placeholder="Username" />
             <input name="password" ref="password" className="form-control" type="password" placeholder="Password" />
             <div className="help-block">{this.props.auth.errorMessage}</div>
             <button onClick={(event) => this.props.dispatch(this.handleFormSubmit(event))} className="btn btn-primary">Sign In</button>
         </div>
-      </div>
+
     );
   }
 }
