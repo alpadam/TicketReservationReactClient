@@ -1,9 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import actions from '../redux/actions';
+import { browserHistory } from 'react-router';
 
 class Header extends React.Component {
+
+  logout(event) {
+    this.props.actions.logOut();
+    localStorage.removeItem('access_token');
+    browserHistory.push('/login');
+  }
 
   renderAuthComponents() {
     if(!this.props.isAuthenticated){
@@ -24,7 +30,7 @@ class Header extends React.Component {
             <Link className="nav-link" to="/userProfile">User profile</Link>
           </li>,
           <li key ={3}>
-            <button id="logoutBtn" type="button" className="btn btn-default navbar-btn btn-danger">Log out</button>
+            <button id="logoutBtn" type="button" onClick={(event) => this.logout()} className="btn btn-default navbar-btn btn-danger">Log out</button>
           </li>
       ]
     }

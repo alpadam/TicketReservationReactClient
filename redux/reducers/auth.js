@@ -7,13 +7,7 @@ const initialState =  {
 
 let authReducer = function(state = initialState, action) {
   switch (action.type) {
-    case 'SIGN_IN_USER':
-
-      browserHistory.push('/input');
-      return Object.assign({}, state, { authenticated: true});
-
      case 'SIGN_IN_REQUEST':
-
        return Object.assign({}, state, {
          isFetching: true,
          isAuthenticated: false,
@@ -21,8 +15,6 @@ let authReducer = function(state = initialState, action) {
          password: action.credentials.password
        });
      case 'SIGN_IN_SUCCESS':
-       browserHistory.push('/');
-
        return Object.assign({}, state, {
          isFetching: false,
          isAuthenticated: true,
@@ -30,12 +22,19 @@ let authReducer = function(state = initialState, action) {
          user_token: action.user.access_token
        });
      case 'SIGN_IN_FAILURE':
-     console.log(action);
-
        return Object.assign({}, state, {
          isFetching: false,
          isAuthenticated: false,
          errorMessage: action.errorMessage
+       });
+     case 'LOG_OUT_REQUEST':
+       return Object.assign({}, state, {
+         isFetching: false,
+         isAuthenticated: false,
+         errorMessage: '',
+         user_token: '',
+         username: '',
+         password: ''
        });
     default:
       return state;

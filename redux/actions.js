@@ -1,28 +1,4 @@
 let actions = {
-  addTodo: function(text){
-    return {
-      type: 'ADD_TODO',
-      text: text
-    }
-  },
-  completeTodo: function(todoId) {
-    return {
-      type: 'COMPLETE_TODO',
-      todoId: todoId
-    }
-  },
-  deleteTodo: function(todoId) {
-    return {
-      type: 'DELETE_TODO',
-      todoId: todoId
-    }
-  },
-  createNewUserId: function(){
-    return{
-      type: 'CREATE_USER_ID',
-      id: Math.round(Math.random() * 100)
-    }
-  },
   signIn: function(credentials){
     return {
       type: 'SIGN_IN_REQUEST',
@@ -39,6 +15,11 @@ let actions = {
     return {
       type: 'SIGN_IN_FAILURE',
       errorMessage: errorMessage
+    }
+  },
+  logOut: function(){
+    return {
+      type: 'LOG_OUT_REQUEST'
     }
   },
   getEventList: function(){

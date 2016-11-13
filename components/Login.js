@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../redux/actions';
+import { browserHistory } from 'react-router';
 
 class Login extends Component {
 
@@ -15,8 +16,6 @@ class Login extends Component {
       body: `grant_type=password&username=${username}&password=${password}`
     }
 
-    console.log(request);
-
     return dispatch => {
 
       var credentials = {
@@ -24,30 +23,26 @@ class Login extends Component {
         password: password
       }
 
-      console.log(credentials);
-
-      this.props.dispatch(this.props.signIn(credentials));
+      dispatch(this.props.signIn(credentials));
 
       return fetch('http://localhost:3253/Token', request)
         .then(response => response.json().then(user => ({ user, response })))
         .then(({ user, response }) =>  {
           if (!response.ok) {
             var message = user.error_description;
-            console.log(message);
-            this.props.dispatch(this.props.signInFailure(message));
+            dispatch(this.props.signInFailure(message));
             return Promise.reject(user);
           } else {
-            console.log(user);
             localStorage.setItem('access_token', user.access_token);
-            this.props.dispatch(this.props.signInSuccess(user));
+            dispatch(this.props.signInSuccess(user));
+            browserHistory.push('/');
           }
-        }).catch(err => this.props.dispatch(this.props.signInFailure(err)));
+        }).catch(err => dispatch(this.props.signInFailure(err)));
     }
   };
 
   render() {
     return(
-
         <div className="col-md-6 col-md-offset-3">
           <h2 className="text-center">Log In</h2><br/>
             <input name="username" ref="username" className="form-control" type="text" placeholder="Username" />

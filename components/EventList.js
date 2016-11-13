@@ -17,21 +17,20 @@ class EventList extends Component {
     }
 
     return dispatch => {
-      console.log('dispatch')
-      this.props.dispatch(this.props.getEventList());
+      dispatch(this.props.getEventList());
 
-      return fetch('http://localhost:3253/Api/Event/GetEvents', request)
+      return fetch('http://localhost:3253/api/event', request)
         .then(response => response.json().then(events => ({ events, response })))
         .then(({ events, response }) =>  {
           if (!response.ok) {
             var message = events.error_description;
-            this.props.dispatch(this.props.getEventListFailure(message));
+            dispatch(this.props.getEventListFailure(message));
             return Promise.reject(events);
           } else {
-            this.props.dispatch(this.props.getEventListSuccess(events));
+            return dispatch(this.props.getEventListSuccess(events));
           }
-        }).catch(err => this.props.dispatch(this.props.getEventListFailure(err)));
-  }
+        }).catch(err => dispatch(this.props.getEventListFailure(err)));
+    }
   };
 
   renderIsFetching(){
