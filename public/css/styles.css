@@ -1,10 +1,23 @@
-/*HEADER*/
+/*NAVBAR*/
+.navbar{
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+  background-color: #337ab7;
+}
 
-#logoutBtn{
-  margin-right: 10px;
+.navbar .nav > li > a {
+      color: #FFFFFF;
+}
+
+.navbar-header > a {
+  color:  #FFFFFF !important;
 }
 
 
+/*HEADER*/
+#logoutBtn{
+  margin-right: 10px;
+}
 
 /*EVENT LIST*/
 .program-row {
@@ -145,4 +158,29 @@
     padding-bottom: 2px;
     outline: 0;
     cursor: default;
+}
+
+/*EVENT DETAILS*/
+
+#event-details .header {
+    width: 100%;
+    padding-bottom: 33.3333%;
+    max-height: 460px;
+    margin: auto;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url(http://akvariumklub.hu/media/view/2016/09/30y_web_244.jpg);
+}
+
+#event-details .header .header-title {
+    display: inline-block;
+    padding: 8px 20px;
+    margin: 5% 0 0 0;
+    font-family: PilcrowSoftRegular;
+    color: white;
+    text-shadow: 2px 3px 3px rgba(0,0,0,0.66);
+    font-size: 7rem;
+    font-weight: 400;
+    line-height: 1.1;
+    overflow: visible;
 }

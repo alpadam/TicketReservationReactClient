@@ -12,9 +12,14 @@ class EventDetailedItem extends Component {
   }
 
   render(){
-    return( 
-      <div>
-        <h2>Event detailed item</h2>
+    return(
+      <div id="event-details">
+        <div className="header">
+              <h1 className="header-title">TEst</h1>
+        </div>
+        <div className="container">
+
+        </div>
         <Link to="/">
           <button>Return to event lists</button>
         </Link>

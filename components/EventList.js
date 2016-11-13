@@ -47,13 +47,12 @@ class EventList extends Component {
 
   render(){
     return(
-      <div>
-        <div className="jumbotron">
-          <h1>Upcoming events</h1>
-        </div>
-          <EventSearchBar/>
+      <div className="container">
+          <div className="row">
+            <EventSearchBar/>
+          </div>
           <br/>
-          <div>
+          <div className="row">
             {this.renderIsFetching()}
           </div>
       </div>

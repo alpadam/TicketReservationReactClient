@@ -10,9 +10,7 @@ class App extends Component {
     return (
       <div>
       <Header isAuthenticated={this.props.auth.isAuthenticated} actions={this.props.actions} />
-        <div className="container">
-          {React.cloneElement(this.props.children, this.props)}
-        </div>
+        {React.cloneElement(this.props.children, this.props)}
       </div>
     )
   }
