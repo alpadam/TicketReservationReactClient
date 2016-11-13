@@ -23,6 +23,7 @@ class EventItem extends Component {
             <p>{this.props.event.Description}</p>
           </div>
           <div className="details">
+            <Link to={"/events/" + this.props.event.Id} className="btn btn-default btn-style-magenta">
               Details
             </Link>
           </div>
