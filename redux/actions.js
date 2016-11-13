@@ -43,7 +43,7 @@ let actions = {
   },
   getEventList: function(){
     return {
-      type: 'GET_EVENTT_LIST',
+      type: 'GET_EVENT_LIST',
     }
   },
   getEventListSuccess: function(events){

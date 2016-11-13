@@ -1,18 +1,40 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class EventItem extends Component {
 
-//TODO: dizájn
   render(){
     return(
-      <li>
-        <div>{this.props.event.EventId}</div>
-        <div>{this.props.event.Name}</div>
-        <div>{this.props.event.Description}</div>
-        <div>{this.props.event.HostLocation}</div>
-        <div>{this.props.event.Date}</div>
-        <div>{this.props.event.IsSuspended}</div>
-      </li>
+      <div className="program-row">
+        <div className="forty">
+          <div className="img-container">
+            <Link to={"/events/" + this.props.event.Id} >
+              <img className="img" src="/public/img/concert.jpg"/>
+            </Link>
+          </div>
+        </div>
+        <div className="forty-text">
+          <div className="title">
+            <Link to={"/events/" + this.props.event.Id} >
+              {this.props.event.Name}
+            </Link>
+          </div>
+          <div className="description">
+            <p>{this.props.event.Description}</p>
+          </div>
+          <div className="details">
+              Details
+            </Link>
+          </div>
+        </div>
+        <div className="twenty">
+          <div className="date">{this.props.event.Date}</div>
+            <div className="eventbuttons">
+              <button className="btn-eventroom">{this.props.event.Location.Name}</button>
+              <button className="btn-tonight">Today!</button>
+            </div>
+          </div>
+        </div>
     )
   }
 };

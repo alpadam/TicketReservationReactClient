@@ -6,34 +6,45 @@ import actions from '../redux/actions';
 
 class EventList extends Component {
 
-  getEvents(event){
+  componentWillMount(){
+    this.props.dispatch(this.getEvents());
+  }
 
+  getEvents(){
     let request = {
       method: 'GET',
       headers: { 'Content-Type':'application/x-www-form-urlencoded' }
     }
 
-    console.log(request);
-
     return dispatch => {
       console.log('dispatch')
       this.props.dispatch(this.props.getEventList());
 
-      return fetch('http://localhost:3253/Api/Event/GetEventList', request)
+      return fetch('http://localhost:3253/Api/Event/GetEvents', request)
         .then(response => response.json().then(events => ({ events, response })))
         .then(({ events, response }) =>  {
           if (!response.ok) {
             var message = events.error_description;
-            console.log(message);
             this.props.dispatch(this.props.getEventListFailure(message));
             return Promise.reject(events);
           } else {
-            console.log(events);
             this.props.dispatch(this.props.getEventListSuccess(events));
           }
         }).catch(err => this.props.dispatch(this.props.getEventListFailure(err)));
-    }
+  }
   };
+
+  renderIsFetching(){
+    if(this.props.eventList.isFetching){
+      return (<h2>Loading...</h2>)
+    }else{
+      return(
+        this.props.eventList.events.map((event) => {
+          return <EventItem key={event.Id} event={event} actions={this.props.actions}/>
+        })
+      )
+    }
+  }
 
   render(){
     return(
@@ -43,15 +54,9 @@ class EventList extends Component {
         </div>
           <EventSearchBar/>
           <br/>
-          <h2>Results</h2>
-          <button onClick={(event) => this.props.dispatch(this.getEvents(event))} className="btn btn-primary">Get Events</button>
-          <ul>
-            {
-                this.props.eventList.events.map((event) => {
-                  return <EventItem key={event.id} event={event} actions={this.props.actions}/>
-                })
-            }
-          </ul>
+          <div>
+            {this.renderIsFetching()}
+          </div>
       </div>
     )
   }

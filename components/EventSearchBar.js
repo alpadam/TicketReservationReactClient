@@ -12,8 +12,11 @@ class EventSearchBar extends Component {
             <option>Akvárium</option>
         </select>
 
-        <label for="datePicker">Date</label>
-        <input type="date" id="datePicker"/>
+        <label for="fromDate">From</label>
+        <input type="date" id="fromdate"/>
+
+          <label for="toDate">To</label>
+          <input type="date" id="toDate"/>
 
         <button className="btn btn-primary">Search</button>
       </div>

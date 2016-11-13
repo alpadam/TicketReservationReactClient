@@ -24,7 +24,7 @@ class Header extends React.Component {
             <Link className="nav-link" to="/userProfile">User profile</Link>
           </li>,
           <li key ={3}>
-            <button type="button" className="btn btn-default navbar-btn btn-danger">Log out</button>
+            <button id="logoutBtn" type="button" className="btn btn-default navbar-btn btn-danger">Log out</button>
           </li>
       ]
     }

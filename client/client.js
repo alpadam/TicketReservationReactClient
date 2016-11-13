@@ -12,6 +12,7 @@ import Register from '../components/Register';
 import RequireAuth from '../components/RequireAuth';
 import NotFoundPage from '../components/NotFoundPage'
 import EventList from '../components/EventList'
+import EventDetailedItem from '../components/EventDetailedItem'
 import UserProfile from '../components/UserProfile'
 
 let initialState = {
@@ -28,23 +29,7 @@ let initialState = {
   eventList : {
     isFetching: false,
     errorMessage: '',
-    events: [
-    {
-      EventId: 1,
-      Name: 'punnany massif concert',
-      Description: 'sthing fancy description about the band...',
-      HostLocation: 'Budapest park',
-      Date: '2016.11.11.',
-      IsSuspended: false
-    },
-    {
-      EventId: 2,
-      Name: 'wellhello',
-      Description: 'sthing fancy description about the band...',
-      HostLocation: 'Akvárium',
-      Date: '2016.11.18.',
-      IsSuspended: false
-    }]
+    events: []
   }
 };
 
@@ -59,6 +44,7 @@ render(
         <Route path="register" component={Register} />
         <Route path="input" component={RequireAuth(TodoInput)} />
         <Route path="userProfile" component={RequireAuth(UserProfile)} />
+        <Route path="events/:id" component={EventDetailedItem} />
 
         <Route path="*" component={NotFoundPage} />
       </Route>
