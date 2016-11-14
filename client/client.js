@@ -30,6 +30,13 @@ let initialState = {
     isFetching: false,
     errorMessage: '',
     events: []
+  },
+  hostLocations: [],
+
+  eventSearch: {
+    selectedHostLocationId: '',
+    fromDate: '',
+    toDate: ''
   }
 };
 
