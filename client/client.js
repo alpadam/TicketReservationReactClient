@@ -31,13 +31,11 @@ let initialState = {
     errorMessage: '',
     events: []
   },
-  hostLocations: [],
-
-  eventSearch: {
-    selectedHostLocationId: '',
-    fromDate: '',
-    toDate: ''
-  }
+  hostLocationList : {
+    isFetching: false,
+    errorMessage: '',
+    hostLocations: []
+  },
 };
 
 let store = configureStore(initialState);

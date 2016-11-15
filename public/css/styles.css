@@ -169,7 +169,7 @@
     margin: auto;
     background-size: 100%;
     background-repeat: no-repeat;
-    background-image: url(http://akvariumklub.hu/media/view/2016/09/30y_web_244.jpg);
+    background-image: url(/public/img/concert.jpg);
 }
 
 #event-details .header .header-title {
