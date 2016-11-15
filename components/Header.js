@@ -8,6 +8,7 @@ class Header extends React.Component {
   logout(event) {
     this.props.actions.logOut();
     localStorage.removeItem('access_token');
+    localStorage.removeItem('isAdmin');
     browserHistory.push('/login');
   }
 
@@ -21,6 +22,18 @@ class Header extends React.Component {
             <Link className="nav-link" to="/register">Register</Link>
           </li>,
       ];
+    } else if(this.props.isAdmin) {
+      return [
+          <li className="nav-item" key={1}>
+            <Link className="nav-link" to="/admin/event/add">Add new event</Link>
+          </li>,
+          <li className="nav-item" key={2}>
+            <Link className="nav-link" to="/admin/ticketcategories">Add new ticket category</Link>
+          </li>,
+          <li key ={3}>
+            <button id="logoutBtn" type="button" onClick={(event) => this.logout()} className="btn btn-default navbar-btn btn-danger">Log out</button>
+          </li>
+      ];
     } else {
       return [
           <li className="nav-item" key={1}>
@@ -32,7 +45,7 @@ class Header extends React.Component {
           <li key ={3}>
             <button id="logoutBtn" type="button" onClick={(event) => this.logout()} className="btn btn-default navbar-btn btn-danger">Log out</button>
           </li>
-      ]
+      ];
     }
   }
 
@@ -52,8 +65,8 @@ class Header extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+/*function mapStateToProps(state) {
   return { auth: { authenticated: state.auth.authenticated }}
-}
+}*/
 
-export default connect(mapStateToProps)(Header);
+export default Header;

@@ -3,12 +3,27 @@ import { connect } from 'react-redux';
 import actions from '../redux/actions';
 import { browserHistory } from 'react-router';
 
+import FormInput from './FormInput';
+
 class Login extends Component {
 
-  handleFormSubmit(event) {
+  constructor(props){
+    super(props);
+    this.state = {
+      username: '',
+      password: ''
+    };
+  }
 
-    var username = this.refs.username.value;
-    var password = this.refs.password.value;
+  handleChangeInput(value, fieldName){
+    this.setState({
+      [fieldName]: value
+    });
+  }
+
+  handleFormSubmit(event) {
+    var username = this.state.username;
+    var password = this.state.password;
 
     let request = {
       method: 'POST',
@@ -17,7 +32,6 @@ class Login extends Component {
     }
 
     return dispatch => {
-
       var credentials = {
         username: username,
         password: password
@@ -34,6 +48,11 @@ class Login extends Component {
             return Promise.reject(user);
           } else {
             localStorage.setItem('access_token', user.access_token);
+            if(user.isAdmin === 'True'){
+              localStorage.setItem('isAdmin', 'True');
+            } else {
+              localStorage.setItem('isAdmin', 'False');
+            }
             dispatch(this.props.signInSuccess(user));
             browserHistory.push('/');
           }
@@ -44,13 +63,12 @@ class Login extends Component {
   render() {
     return(
         <div className="col-md-6 col-md-offset-3">
-          <h2 className="text-center">Log In</h2><br/>
-            <input name="username" ref="username" className="form-control" type="text" placeholder="Username" />
-            <input name="password" ref="password" className="form-control" type="password" placeholder="Password" />
-            <div className="help-block">{this.props.auth.errorMessage}</div>
-            <button onClick={(event) => this.props.dispatch(this.handleFormSubmit(event))} className="btn btn-primary">Sign In</button>
+          <h2 className="text-center">Log In</h2>
+          <FormInput name="username" className="form-control" placeholder="Username" onValueChange={this.handleChangeInput.bind(this)} />
+          <FormInput name="password" className="form-control" placeholder="Password" type="password" onValueChange={this.handleChangeInput.bind(this)} />
+          <div className="help-block">{this.props.auth.errorMessage}</div>
+          <button onClick={(event) => this.props.dispatch(this.handleFormSubmit(event))} className="btn btn-primary">Sign In</button>
         </div>
-
     );
   }
 }

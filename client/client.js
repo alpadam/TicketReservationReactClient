@@ -10,19 +10,18 @@ import TodoList from '../components/TodoList';
 import Login from '../components/Login';
 import Register from '../components/Register';
 import RequireAuth from '../components/RequireAuth';
+import RequireAdmin from '../components/RequireAdmin';
 import NotFoundPage from '../components/NotFoundPage'
-import EventList from '../components/EventList'
-import EventDetailedItem from '../components/EventDetailedItem'
-import UserProfile from '../components/UserProfile'
+import EventList from '../components/EventList';
+import EventDetailedItem from '../components/EventDetailedItem';
+import EventEditItem from '../components/EventEditItem';
+import TicketCategoryEditList from '../components/TicketCategoryEditList';
+import UserProfile from '../components/UserProfile';
 
 let initialState = {
-  todos: [{
-    id: 0,
-    completed: false,
-    text: 'Initial todo for demo...'
-  }],
   auth : {
     isAuthenticated: localStorage.getItem('access_token') ? true : false,
+    isAdmin: localStorage.getItem('isAdmin') === 'True' ? true : false,
     isFetching: false,
     errorMessage: ''
   },
@@ -30,6 +29,11 @@ let initialState = {
     isFetching: false,
     errorMessage: '',
     events: []
+  },
+  ticketCategories: {
+    isFetching: false,
+    errorMessage: '',
+    categories: []
   }
 };
 
@@ -45,6 +49,10 @@ render(
         <Route path="input" component={RequireAuth(TodoInput)} />
         <Route path="userProfile" component={RequireAuth(UserProfile)} />
         <Route path="events/:id" component={EventDetailedItem} />
+
+        <Route path="admin/event/add" component={RequireAdmin(EventEditItem)} />
+        <Route path="admin/event/:id/edit" component={RequireAdmin(EventEditItem)} />
+        <Route path="admin/ticketcategories" component={RequireAdmin(TicketCategoryEditList)} />
 
         <Route path="*" component={NotFoundPage} />
       </Route>
