@@ -48,11 +48,13 @@ class Login extends Component {
             return Promise.reject(user);
           } else {
             localStorage.setItem('access_token', user.access_token);
+
             if(user.isAdmin === 'True'){
               localStorage.setItem('isAdmin', 'True');
             } else {
               localStorage.setItem('isAdmin', 'False');
             }
+
             dispatch(this.props.signInSuccess(user));
             browserHistory.push('/');
           }

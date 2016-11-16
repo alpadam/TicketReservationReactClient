@@ -71,6 +71,23 @@ let actions = {
       type: 'GET_CATEGORY_LIST_FAILURE',
       errorMessage: errorMessage
     }
+  },
+  addTicketCategory: function(){
+    return {
+      type: 'ADD_TICKET_CATEGORY',
+    }
+  },
+  addTicketCategorySuccess: function(category){
+    return {
+      type: 'ADD_TICKET_CATEGORY_SUCCESS',
+      category
+    }
+  },
+  addTicketCategoryFailure: function(errorMessage){
+    return {
+      type: 'ADD_TICKET_CATEGORY_FAILURE',
+      errorMessage: errorMessage
+    }
   }
 }
 

@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../redux/actions';
 
+import TicketCategoryAddModal from './Modal/TicketCategoryAddModal';
+
 class TicketCategoryEditList extends Component {
 
   constructor(props){
     super(props);
     props.dispatch(this.getCategories());
+    this.state = {
+        showModal: false
+    };
   }
 
   getCategories(){
@@ -36,6 +41,8 @@ class TicketCategoryEditList extends Component {
           <div className="jumbotron">
             <h1>Ticket categories</h1>
           </div>
+          <TicketCategoryAddModal actions={this.props.actions} show={this.state.showModal} onHide={() => this.setState({ showModal: false })} />
+          <button onClick={()=>this.setState({ showModal: true })} className="btn btn-primary">Add new ticket category</button>
           <table className="table table-striped">
           <tr>
             <th>#</th>
