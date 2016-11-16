@@ -34,6 +34,11 @@ let initialState = {
     isFetching: false,
     errorMessage: '',
     categories: []
+  },
+  hostLocationList : {
+    isFetching: false,
+    errorMessage: '',
+    hostLocations: []
   }
 };
 

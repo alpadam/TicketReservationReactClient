@@ -88,6 +88,23 @@ let actions = {
       type: 'ADD_TICKET_CATEGORY_FAILURE',
       errorMessage: errorMessage
     }
+  },
+  getHostLocationList: function(){
+    return {
+      type: 'GET_HOST_LOCATION_LIST',
+    }
+  },
+  getHostLocationListSuccess: function(hostLocations){
+    return {
+      type: 'GET_HOST_LOCATION_LIST_SUCCESS',
+      hostLocations
+    }
+  },
+  getHostLocationListFailure: function(errorMessage){
+    return {
+      type: 'GET_HOST_LOCATION_LIST_FAILURE',
+      errorMessage: errorMessage
+    }
   }
 }
 

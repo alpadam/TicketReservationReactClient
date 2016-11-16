@@ -4,13 +4,15 @@ import userReducer from './userReducer';
 import authReducer from './auth';
 import eventReducer from './eventReducer';
 import ticketCategoryReducer from './ticketCategoryReducer';
+import hostLocationReducer from './hostLocationReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   todos: todoReducer,
   user: userReducer,
   eventList: eventReducer,
-  ticketCategories: ticketCategoryReducer
+  ticketCategories: ticketCategoryReducer,
+  hostLocationList: hostLocationReducer
 });
 
 export default rootReducer;
