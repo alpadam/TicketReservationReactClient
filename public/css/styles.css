@@ -14,6 +14,21 @@
 }
 
 
+/*EVENT SEARCH BAR*/
+
+#eventSearchBar .panel-body label{
+  margin-right: 5px;
+}
+
+#eventSearchBar .panel-body select{
+  margin-right: 30px;
+}
+
+#eventSearchBar .panel-body input{
+  margin-right: 30px;
+}
+
+
 /*HEADER*/
 #logoutBtn{
   margin-right: 10px;

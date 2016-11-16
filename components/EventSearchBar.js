@@ -89,32 +89,37 @@ class EventSearchBar extends Component {
     }else{
       return(
         <div>
-          <label for="locations">Locations</label>
-          <select id="locations"
-            value={this.state.HostLocationId || ''}
-            onChange={e => this.setState({ HostLocationId: e.target.value || null })}>
-              <option value="">Select location!</option>
-            {
-              this.props.hostLocationList.hostLocations.map((hostLocation) => {
-                return <option key={hostLocation.Id} value={hostLocation.Id}>{hostLocation.Name}</option>
-              })
-            }
-          </select>
+          <h2>Search for Events</h2>
+          <div className="panel panel-default" id="eventSearchBar">
+            <div className="panel-body">
+              <label for="locations">Locations</label>
+              <select id="locations"
+                value={this.state.HostLocationId || ''}
+                onChange={e => this.setState({ HostLocationId: e.target.value || null })}>
+                  <option value="">Select location!</option>
+                {
+                  this.props.hostLocationList.hostLocations.map((hostLocation) => {
+                    return <option key={hostLocation.Id} value={hostLocation.Id}>{hostLocation.Name}</option>
+                  })
+                }
+              </select>
 
-          <label for="fromDate">From date</label>
-          <input id="fromDate" type="date"
-             value={this.state.FromDate || ''}
-             onChange={e => this.setState({ FromDate: e.target.value || null })}
-             />
+              <label for="fromDate">From date</label>
+              <input id="fromDate" type="date"
+                 value={this.state.FromDate || ''}
+                 onChange={e => this.setState({ FromDate: e.target.value || null })}
+                 />
 
-          <label for="toDate">To date</label>
-            <input id="toDate" type="date"
-               value={this.state.ToDate || ''}
-               onChange={e => this.setState({ ToDate: e.target.value || null })}
-               />
-             
-             <button id="searchBtn" onClick={(event) => this.handleSearchButtonClick(event)} className="btn btn-primary">Search</button>
-        </div>
+              <label for="toDate">To date</label>
+                <input id="toDate" type="date"
+                   value={this.state.ToDate || ''}
+                   onChange={e => this.setState({ ToDate: e.target.value || null })}
+                   />
+
+                 <button id="searchBtn" onClick={(event) => this.handleSearchButtonClick(event)} className="btn btn-primary">Search</button>
+             </div>
+         </div>
+      </div>
     )
     }
   }

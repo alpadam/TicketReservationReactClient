@@ -1,7 +1,6 @@
 let hostLocationReducer = function(hostLocationList = {}, action) {
   switch (action.type) {
     case 'GET_HOST_LOCATION_LIST':
-    console.log("BEFUTIDEEEEEEEEEEEEEEEEe")
     return Object.assign({}, hostLocationList, {
       isFetching: true,
     });

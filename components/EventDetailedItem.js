@@ -5,6 +5,8 @@ class EventDetailedItem extends Component {
 
   componentWillMount(){
     this.props.dispatch(this.getEventDetails)
+    var id = this.props.params.id; 
+    console.log(id)
   }
 
   getEventDetails(){
@@ -21,7 +23,7 @@ class EventDetailedItem extends Component {
 
         </div>
         <Link to="/">
-          <button>Return to event lists</button>
+          <button className="btn btn-primary">Return to event lists</button>
         </Link>
       </div>
     )
