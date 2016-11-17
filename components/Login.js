@@ -50,9 +50,9 @@ class Login extends Component {
             localStorage.setItem('access_token', user.access_token);
 
             if(user.isAdmin === 'True'){
-              localStorage.setItem('isAdmin', true);
+              localStorage.setItem('isAdmin', "True");
             } else {
-              localStorage.setItem('isAdmin', false);
+              localStorage.setItem('isAdmin', "False");
             }
 
             dispatch(this.props.signInSuccess(user));

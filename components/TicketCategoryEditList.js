@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../redux/actions';
 
 import TicketCategoryAddModal from './Modal/TicketCategoryAddModal';
+import ErrorModal from './Modal/ErrorModal';
 
 class TicketCategoryEditList extends Component {
 
@@ -38,26 +39,31 @@ class TicketCategoryEditList extends Component {
   render(){
     return(
         <div className="container">
+
+          <ErrorModal show={this.props.ticketCategories.errorMessage != ''} errorMessage={this.props.ticketCategories.errorMessage} onHide={() => {this.setState({ showModal: false }); this.props.dispatch(this.props.handleError());}} />
+          <TicketCategoryAddModal dispatch={this.props.dispatch} show={this.state.showModal && this.props.ticketCategories.errorMessage === ''} onHide={() => this.setState({ showModal: false })} />
+
           <div className="jumbotron">
             <h1>Ticket categories</h1>
           </div>
-          <TicketCategoryAddModal actions={this.props.actions} show={this.state.showModal} onHide={() => this.setState({ showModal: false })} />
           <button onClick={()=>this.setState({ showModal: true })} className="btn btn-primary">Add new ticket category</button>
           <table className="table table-striped">
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-          </tr>
-          {
-              this.props.ticketCategories.categories.map((category) => {
-                return (
-                  <tr>
-                    <td>{category.Id}</td>
-                    <td>{category.Name}</td>
-                  </tr>
-                );
-              })
-          }
+            <tbody>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+              </tr>
+              {
+                  this.props.ticketCategories.categories.map((category) => {
+                    return (
+                      <tr>
+                        <td>{category.Id}</td>
+                        <td>{category.Name}</td>
+                      </tr>
+                    );
+                  })
+              }
+            </tbody>
           </table>
         </div>
     );

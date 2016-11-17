@@ -28,9 +28,12 @@ class Header extends React.Component {
             <Link className="nav-link" to="/admin/event/add">Add new event</Link>
           </li>,
           <li className="nav-item" key={2}>
-            <Link className="nav-link" to="/admin/ticketcategories">Add new ticket category</Link>
+            <Link className="nav-link" to="/admin/ticketcategories">Ticket categories</Link>
           </li>,
-          <li key ={3}>
+          <li className="nav-item" key={3}>
+            <Link className="nav-link" to="/admin/hostLocations">Host locations</Link>
+          </li>,
+          <li key ={4}>
             <button id="logoutBtn" type="button" onClick={(event) => this.logout()} className="btn btn-default navbar-btn btn-danger">Log out</button>
           </li>
       ];

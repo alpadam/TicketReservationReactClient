@@ -105,6 +105,28 @@ let actions = {
       type: 'GET_HOST_LOCATION_LIST_FAILURE',
       errorMessage: errorMessage
     }
+  },
+  handleError: function(){
+      return {
+        type: 'ERROR_HANDLED'
+      }
+  },
+  addHostLocation: function(){
+    return {
+      type: 'ADD_HOST_LOCATION'
+    }
+  },
+  addHostLocationSuccess: function(hostLocation){
+    return {
+      type: 'ADD_HOST_LOCATION_SUCCESS',
+      hostLocation
+    }
+  },
+  addHostLocationFailure: function(errorMessage){
+    return {
+      type: 'ADD_HOST_LOCATION_FAILURE',
+      errorMessage: errorMessage
+    }
   }
 }
 

@@ -15,7 +15,34 @@ let hostLocationReducer = function(hostLocationList = {}, action) {
         isFetching: false,
         errorMessage: action.errorMessage
       });
-
+      case 'ADD_HOST_LOCATION':
+        return Object.assign({}, hostLocationList, {
+          isFetching: true,
+          errorMessage: ''
+        });
+      case 'ADD_HOST_LOCATION_SUCCESS':
+        hostLocationList.hostLocations.push({
+          Id: action.hostLocation.Id,
+          Name: action.hostLocation.Name,
+          Capacity: action.hostLocation.Capacity,
+          Description: action.hostLocation.Description,
+          Latitude: action.hostLocation.Latitude,
+          Longitude: action.hostLocation.Longitude,
+          Address: action.hostLocation.Address,
+        });
+        return Object.assign({}, hostLocationList, {
+          isFetching: false,
+          errorMessage: ''
+        });
+      case 'ADD_HOST_LOCATION_FAILURE':
+        return Object.assign({}, hostLocationList, {
+          isFetching: false,
+          errorMessage: action.errorMessage ? action.errorMessage : action
+        });
+      case 'ERROR_HANDLED':
+        return Object.assign({}, hostLocationList, {
+          errorMessage: ''
+        });
     default:
       return hostLocationList;
   }

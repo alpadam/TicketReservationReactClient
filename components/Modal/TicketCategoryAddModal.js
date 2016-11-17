@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import actions from '../../redux/actions';
 import FormInput from '../FormInput';
 
 class TicketCategoryAddModal extends Component {
@@ -22,9 +24,30 @@ class TicketCategoryAddModal extends Component {
           Name: this.state.nameInput
         };
 
-        console.log(category);
+        let request = {
+          method: 'POST',
+          headers: { 'Content-Type':'application/json',
+                     'Authorization': 'Bearer ' + localStorage.getItem('access_token')},
+          body: JSON.stringify(category)
+        };
 
-        //this.props.actions.addTicketCategory(category);
+        return dispatch => {
+
+        dispatch(this.props.addTicketCategory());
+
+        return fetch('http://localhost:3253/api/ticketcategory/Add', request)
+          .then(response => response.json())
+          .then(json =>  {
+            if (json.Message) {
+              dispatch(this.props.addTicketCategoryFailure(json.ExceptionMessage));
+              return Promise.reject(json);
+            } else {
+              category.Id = json;
+              this.props.addTicketCategorySuccess(category);
+              this.props.onHide();
+            }
+          }).catch(err => console.log(err));
+        }
     }
 
     render() {
@@ -36,13 +59,13 @@ class TicketCategoryAddModal extends Component {
           <Modal.Body>
             <h4>Please add a new category name</h4>
             <FormInput name="nameInput" className="form-control" placeholder="Category name" onValueChange={this.handleChangeInput.bind(this)} />
-          </Modal.Body>
+        </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => this.handleSave()}>Save</Button>
+            <Button onClick={() => this.props.dispatch(this.handleSave())}>Save</Button>
           </Modal.Footer>
         </Modal>
       );
   }
 };
 
-export default TicketCategoryAddModal;
+export default connect(null, actions)(TicketCategoryAddModal);

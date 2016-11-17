@@ -22,9 +22,11 @@ let ticketCategoryReducer = function(ticketCategories = {}, action) {
         errorMessage: ''
       });
     case 'ADD_TICKET_CATEGORY_SUCCESS':
-      return Object.assign({
+        ticketCategories.categories.push({
+          Id: action.category.Id,
           Name: action.category.Name
-        }, ticketCategories, {
+        });
+      return Object.assign({}, ticketCategories, {
         isFetching: false,
         errorMessage: ''
       });
@@ -32,6 +34,10 @@ let ticketCategoryReducer = function(ticketCategories = {}, action) {
       return Object.assign({}, ticketCategories, {
         isFetching: false,
         errorMessage: action.errorMessage
+      });
+    case 'ERROR_HANDLED':
+      return Object.assign({}, ticketCategories, {
+        errorMessage: ''
       });
     default:
       return ticketCategories;

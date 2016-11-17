@@ -16,6 +16,7 @@ import EventList from '../components/EventList';
 import EventDetailedItem from '../components/EventDetailedItem';
 import EventEditItem from '../components/EventEditItem';
 import TicketCategoryEditList from '../components/TicketCategoryEditList';
+import HostLocationEditList from '../components/HostLocationEditList';
 import UserProfile from '../components/UserProfile';
 
 let initialState = {
@@ -58,6 +59,7 @@ render(
         <Route path="admin/event/add" component={RequireAdmin(EventEditItem)} />
         <Route path="admin/event/:id/edit" component={RequireAdmin(EventEditItem)} />
         <Route path="admin/ticketcategories" component={RequireAdmin(TicketCategoryEditList)} />
+        <Route path="admin/hostLocations" component={RequireAdmin(HostLocationEditList)} />
 
         <Route path="*" component={NotFoundPage} />
       </Route>
