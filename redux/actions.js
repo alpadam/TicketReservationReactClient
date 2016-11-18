@@ -127,7 +127,24 @@ let actions = {
       type: 'ADD_HOST_LOCATION_FAILURE',
       errorMessage: errorMessage
     }
-  }
+  },
+  deleteHostLocation: function(){
+    return {
+      type: 'DELETE_HOST_LOCATION'
+    }
+  },
+  deleteHostLocationSuccess: function(id){
+    return {
+      type: 'DELETE_HOST_LOCATION_SUCCESS',
+      id
+    }
+  },
+  deleteHostLocationFailure: function(errorMessage){
+    return {
+      type: 'DELETE_HOST_LOCATION_FAILURE',
+      errorMessage: errorMessage
+    }
+  },
 }
 
 export default actions;

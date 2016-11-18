@@ -35,6 +35,30 @@ class HostLocationEditList extends Component {
     }
   }
 
+  handleDelete(id) {
+
+      let request = {
+        method: 'DELETE',
+        headers: { 'Content-Type':'application/json',
+                   'Authorization': 'Bearer ' + localStorage.getItem('access_token')}
+      };
+
+      return dispatch => {
+
+      dispatch(this.props.deleteHostLocation());
+
+      return fetch('http://localhost:3253/api/hostlocation/'+ id, request)
+        .then(response =>  {
+          if (!response.ok) {
+            dispatch(this.props.deleteHostLocationFailure(response.statusText));
+            return Promise.reject(response);
+          } else {
+            this.props.deleteHostLocationSuccess(id);
+          }
+        }).catch(err => dispatch(this.props.deleteHostLocationFailure(err)));
+      }
+  }
+
   render(){
     return(
         <div className="container">
@@ -56,6 +80,7 @@ class HostLocationEditList extends Component {
                 <th>Latitude</th>
                 <th>Longitude</th>
                 <th>Address</th>
+                <th></th>
               </tr>
               {
                   this.props.hostLocationList.hostLocations.map((location) => {
@@ -68,6 +93,7 @@ class HostLocationEditList extends Component {
                         <td>{location.Latitude}</td>
                         <td>{location.Longitude}</td>
                         <td>{location.Address}</td>
+                        <td><button onClick={()=> this.props.dispatch(this.handleDelete(location.Id))} className="btn btn-danger">Delete</button></td>
                       </tr>
                     );
                   })

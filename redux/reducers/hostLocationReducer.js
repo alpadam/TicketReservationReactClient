@@ -39,6 +39,24 @@ let hostLocationReducer = function(hostLocationList = {}, action) {
           isFetching: false,
           errorMessage: action.errorMessage ? action.errorMessage : action
         });
+      case 'DELETE_HOST_LOCATION':
+        return Object.assign({}, hostLocationList, {
+          isFetching: true,
+          errorMessage: ''
+        });
+      case 'DELETE_HOST_LOCATION_SUCCESS':
+        hostLocationList.hostLocations = hostLocationList.hostLocations.filter(function(location) {
+            return location.Id !== action.id;
+        });
+        return Object.assign({}, hostLocationList, {
+          isFetching: false,
+          errorMessage: ''
+        });
+      case 'DELETE_HOST_LOCATION_FAILURE':
+        return Object.assign({}, hostLocationList, {
+          isFetching: false,
+          errorMessage: action.errorMessage ? action.errorMessage : action
+        });
       case 'ERROR_HANDLED':
         return Object.assign({}, hostLocationList, {
           errorMessage: ''
