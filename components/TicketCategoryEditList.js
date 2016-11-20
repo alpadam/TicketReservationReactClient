@@ -36,6 +36,27 @@ class TicketCategoryEditList extends Component {
     }
   };
 
+  handleDelete(id) {
+      let request = {
+        method: 'DELETE',
+        headers: { 'Content-Type':'application/json',
+                   'Authorization': 'Bearer ' + localStorage.getItem('access_token')}
+      };
+
+      return dispatch => {
+        dispatch(this.props.deleteTicketCategory());
+        return fetch('http://localhost:3253/api/ticketcategory/'+ id, request)
+          .then(response =>  {
+            if (!response.ok) {
+              dispatch(this.props.deleteTicketCategoryFailure(response.statusText));
+              return Promise.reject(response);
+            } else {
+              this.props.deleteTicketCategorySuccess(id);
+            }
+          }).catch(err => dispatch(this.props.deleteTicketCategoryFailure(err)));
+      }
+  }
+
   render(){
     return(
         <div className="container">
@@ -52,6 +73,7 @@ class TicketCategoryEditList extends Component {
               <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th></th>
               </tr>
               {
                   this.props.ticketCategories.categories.map((category) => {
@@ -59,6 +81,7 @@ class TicketCategoryEditList extends Component {
                       <tr>
                         <td>{category.Id}</td>
                         <td>{category.Name}</td>
+                        <td><button onClick={()=> this.props.dispatch(this.handleDelete(category.Id))} className="btn btn-danger">Delete</button></td>
                       </tr>
                     );
                   })

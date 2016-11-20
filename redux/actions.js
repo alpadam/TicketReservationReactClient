@@ -145,6 +145,23 @@ let actions = {
       errorMessage: errorMessage
     }
   },
+  deleteTicketCategory: function(){
+    return {
+      type: 'DELETE_TICKET_CATEGORY'
+    }
+  },
+  deleteTicketCategorySuccess: function(id){
+    return {
+      type: 'DELETE_TICKET_CATEGORY_SUCCESS',
+      id
+    }
+  },
+  deleteTicketCategoryFailure: function(errorMessage){
+    return {
+      type: 'DELETE_TICKET_CATEGORY_FAILURE',
+      errorMessage: errorMessage
+    }
+  },
   getEventDetails: function(){
     return {
       type: 'GET_EVENT_DETAILS',

@@ -19,7 +19,7 @@ let authReducer = function(state = initialState, action) {
        return Object.assign({}, state, {
          isFetching: false,
          isAuthenticated: true,
-         isAdmin: action.user.isAdmin,
+         isAdmin: action.user.isAdmin === 'True' ? true : false,
          errorMessage: '',
          user_token: action.user.access_token
        });

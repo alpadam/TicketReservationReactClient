@@ -35,6 +35,24 @@ let ticketCategoryReducer = function(ticketCategories = {}, action) {
         isFetching: false,
         errorMessage: action.errorMessage
       });
+    case 'DELETE_TICKET_CATEGORY':
+      return Object.assign({}, ticketCategories, {
+        isFetching: true,
+        errorMessage: ''
+      });
+    case 'DELETE_TICKET_CATEGORY_SUCCESS':
+      ticketCategories.categories = ticketCategories.categories.filter(function(category) {
+          return category.Id !== action.id;
+      });
+      return Object.assign({}, ticketCategories, {
+        isFetching: false,
+        errorMessage: ''
+      });
+    case 'DELETE_TICKET_CATEGORY_FAILURE':
+      return Object.assign({}, ticketCategories, {
+        isFetching: false,
+        errorMessage: action.errorMessage ? action.errorMessage : action
+      });
     case 'ERROR_HANDLED':
       return Object.assign({}, ticketCategories, {
         errorMessage: ''
