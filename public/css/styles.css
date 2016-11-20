@@ -241,6 +241,12 @@
   width: 100%;
 }
 
+#locationGoogleMaps{
+  height: 300px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 
 /*USER COMMENTS*/
 

@@ -6,7 +6,7 @@ import {
 } from "react-google-maps";
 
 const SimpleMap = props => (
-  <section>
+  <section id="locationGoogleMaps">
     <GoogleMapLoader
       containerElement={
         <div
@@ -19,16 +19,14 @@ const SimpleMap = props => (
       googleMapElement={
         <GoogleMap
           ref={(map) => console.log(map)}
-          defaultZoom={3}
-          defaultCenter={{ lat: -25.363882, lng: 131.044922 }}
-          onClick={props.onMapClick}
+          defaultZoom={10}
+          defaultCenter={{ lat: props.latitude, lng: props.longitude }}
         >
-          {props.markers.map((marker, index) => (
             <Marker
-              {...marker}
-              onRightclick={() => props.onMarkerRightclick(index)}
+              position={{lat: props.latitude, lng: props.longitude }}
+              key={props.name}
             />
-          ))}
+
         </GoogleMap>
       }
     />
