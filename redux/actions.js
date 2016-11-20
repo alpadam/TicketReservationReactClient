@@ -105,6 +105,56 @@ let actions = {
       type: 'GET_HOST_LOCATION_LIST_FAILURE',
       errorMessage: errorMessage
     }
+  },
+  getEventDetails: function(){
+    return {
+      type: 'GET_EVENT_DETAILS',
+    }
+  },
+  getEventDetailsSuccess: function(event){
+    return {
+      type: 'GET_EVENT_DETAILS_SUCCESS',
+      event
+    }
+  },
+  getEventDetailsFailure: function(errorMessage){
+    return {
+      type: 'GET_EVENT_DETAILS_FAILURE',
+      errorMessage: errorMessage
+    }
+  },
+  getEventUserComments: function(){
+    return {
+      type: 'GET_EVENT_USER_COMMENTS',
+    }
+  },
+  getEventUserCommentsSuccess: function(comments){
+    return {
+      type: 'GET_EVENT_USER_COMMENTS_SUCCESS',
+      comments
+    }
+  },
+  getEventUserCommentsFailure: function(errorMessage){
+    return {
+      type: 'GET_EVENT_USER_COMMENTS_FAILURE',
+      errorMessage: errorMessage
+    }
+  },
+  addEventUserComment: function(){
+    return {
+      type: 'ADD_EVENT_USER_COMMENT',
+    }
+  },
+  addEventUserCommentSuccess: function(){
+    return {
+      type: 'ADD_EVENT_USER_COMMENT_SUCCESS',
+    }
+  },
+  addEventUserCommentFailure: function(errorMessage){
+    return {
+      type: 'ADD_EVENT_USER_COMMENT_FAILURE',
+      errorMessage: errorMessage
+    }
   }
 }
 

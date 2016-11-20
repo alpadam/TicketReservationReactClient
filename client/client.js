@@ -39,6 +39,16 @@ let initialState = {
     isFetching: false,
     errorMessage: '',
     hostLocations: []
+  },
+  eventDetails : {
+    isFetching: false,
+    errorMessage: '',
+    event: {}
+  },
+  eventComments : {
+    isFetching: false,
+    errorMessage: '',
+    comments: []
   }
 };
 

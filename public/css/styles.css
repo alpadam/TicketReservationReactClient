@@ -190,12 +190,110 @@
 #event-details .header .header-title {
     display: inline-block;
     padding: 8px 20px;
-    margin: 5% 0 0 0;
+    margin: 25% 0 0 0;
     font-family: PilcrowSoftRegular;
     color: white;
     text-shadow: 2px 3px 3px rgba(0,0,0,0.66);
-    font-size: 7rem;
+    font-size: 8rem;
     font-weight: 400;
     line-height: 1.1;
     overflow: visible;
+    text-align: center;
+    width: 100%;
+}
+
+#detailsLeftSide {
+  background-color: #F0F0F0;
+  font-size: 14px;
+}
+
+#detailsLeftSide .eventDetails{
+  margin-top: 20px;
+  font-size: 1.5em;
+  line-height: 2;
+}
+
+#eventTicketList {
+  font-size: 1.5em;
+}
+
+#detailsLeftSide .eventDetails .eventDate{
+  text-align: center;
+}
+
+#detailsRightSide .serviceinfo{
+  min-height: 500px;
+  background-color: #E0E0E0;
+  color: #333333;
+  font-size: 1.2em;
+}
+
+#detailsRightSide .serviceinfo .locationName {
+  text-align: center;
+  margin-bottom: 20px !important;
+}
+
+#detailsRightSide .serviceinfo  .col-sm-12{
+  margin-top: 10px;
+}
+
+#detailsRightSide img{
+  width: 100%;
+}
+
+
+/*USER COMMENTS*/
+
+.thumbnail {
+    padding:0px;
+}
+.panel {
+	position:relative;
+}
+.panel>.panel-heading:after,.panel>.panel-heading:before{
+	position:absolute;
+	top:11px;left:-16px;
+	right:100%;
+	width:0;
+	height:0;
+	display:block;
+	content:" ";
+	border-color:transparent;
+	border-style:solid solid outset;
+	pointer-events:none;
+}
+.panel>.panel-heading:after{
+	border-width:7px;
+	border-right-color:#E0E0E0
+	margin-top:1px;
+	margin-left:2px;
+}
+.panel>.panel-heading:before{
+	border-right-color:#ddd;
+	border-width:8px;
+}
+
+.panel-default > .panel-heading {
+  background-color: #E0E0E0 !important
+}
+
+#addCommentBox textarea {
+  width: 100%;
+  height: 90px;
+  resize: none;
+  border-color:transparent;
+  border-style:solid solid outset;
+}
+
+#addCommentBox button {
+  float: right;
+  width: 70px;
+}
+
+#addCommentBtn {
+  margin-top: 5px;
+}
+
+#backToEventListBtn{
+  margin-bottom: 10px;
 }
