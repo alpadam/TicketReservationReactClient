@@ -5,9 +5,17 @@ class FormInput extends Component {
   constructor(props){
       super(props);
       this.state = {
-        inputText: '',
+        inputText: this.props.inputText || '',
         inputType: this.props.type || 'text'
       }
+  }
+
+  componentWillReceiveProps(props) {
+    if(props.inputText){
+      this.setState({
+        inputText: props.inputText
+      });
+    }
   }
 
   handleChange(event){

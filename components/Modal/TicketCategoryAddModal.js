@@ -9,8 +9,26 @@ class TicketCategoryAddModal extends Component {
     constructor(props){
       super(props);
       this.state = {
+        isEditMode: false,
+        id: '',
         nameInput: ''
       };
+    }
+
+    componentWillReceiveProps(nextProps) {
+      if(nextProps.selectedCategory){
+        this.setState({
+          isEditMode: true,
+          id: this.state.id !== '' ? this.state.id : nextProps.selectedCategory.Id,
+          nameInput: this.state.nameInput !== '' ? this.state.nameInput : nextProps.selectedCategory.Name,
+        });
+      } else {
+        this.setState({
+          isEditMode: false,
+          id: '',
+          nameInput: '',
+        });
+      }
     }
 
     handleChangeInput(value, fieldName) {
@@ -21,8 +39,11 @@ class TicketCategoryAddModal extends Component {
 
     handleSave() {
         let category = {
+          Id: this.state.id,
           Name: this.state.nameInput
         };
+
+        let url = 'http://localhost:3253/api/ticketcategory/Add';
 
         let request = {
           method: 'POST',
@@ -31,19 +52,38 @@ class TicketCategoryAddModal extends Component {
           body: JSON.stringify(category)
         };
 
+        if(this.state.isEditMode){
+          request.method = 'PUT';
+          url = 'http://localhost:3253/api/ticketcategory/Edit';
+        }
+
         return dispatch => {
 
-        dispatch(this.props.addTicketCategory());
+        if(this.state.isEditMode) {
+          dispatch(this.props.editTicketCategory());
+        } else {
+          dispatch(this.props.addTicketCategory());
+        }
 
-        return fetch('http://localhost:3253/api/ticketcategory/Add', request)
+        return fetch(url.toString(), request)
           .then(response => response.json())
           .then(json =>  {
             if (json.Message) {
-              dispatch(this.props.addTicketCategoryFailure(json.ExceptionMessage));
+              if(this.state.isEditMode) {
+                dispatch(this.props.editTicketCategoryFailure(json.ExceptionMessage));
+              } else {
+                dispatch(this.props.addTicketCategoryFailure(json.ExceptionMessage));
+              }
               return Promise.reject(json);
             } else {
               category.Id = json;
-              this.props.addTicketCategorySuccess(category);
+
+              if(this.state.isEditMode) {
+                  this.props.editTicketCategorySuccess(category);
+              } else {
+                  this.props.addTicketCategorySuccess(category);
+              }
+
               this.props.onHide();
             }
           }).catch(err => console.log(err));
@@ -58,7 +98,7 @@ class TicketCategoryAddModal extends Component {
           </Modal.Header>
           <Modal.Body>
             <h4>Please add a new category name</h4>
-            <FormInput name="nameInput" className="form-control" placeholder="Category name" onValueChange={this.handleChangeInput.bind(this)} />
+            <FormInput name="nameInput" inputText={this.state.nameInput} className="form-control" placeholder="Category name" onValueChange={this.handleChangeInput.bind(this)} />
         </Modal.Body>
           <Modal.Footer>
             <Button onClick={() => this.props.dispatch(this.handleSave())}>Save</Button>

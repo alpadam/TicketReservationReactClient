@@ -11,7 +11,8 @@ class TicketCategoryEditList extends Component {
     super(props);
     props.dispatch(this.getCategories());
     this.state = {
-        showModal: false
+        showModal: false,
+        selectedCategory: null
     };
   }
 
@@ -57,12 +58,19 @@ class TicketCategoryEditList extends Component {
       }
   }
 
+  handleEdit(category) {
+    this.setState({
+      showModal: true,
+      selectedCategory: category
+    });
+  }
+
   render(){
     return(
         <div className="container">
 
-          <ErrorModal show={this.props.ticketCategories.errorMessage != ''} errorMessage={this.props.ticketCategories.errorMessage} onHide={() => {this.setState({ showModal: false }); this.props.dispatch(this.props.handleError());}} />
-          <TicketCategoryAddModal dispatch={this.props.dispatch} show={this.state.showModal && this.props.ticketCategories.errorMessage === ''} onHide={() => this.setState({ showModal: false })} />
+          <ErrorModal show={this.props.ticketCategories.errorMessage != ''} errorMessage={this.props.ticketCategories.errorMessage} onHide={() => {this.setState({ showModal: false, selectedCategory: null }); this.props.dispatch(this.props.handleError());}} />
+          <TicketCategoryAddModal selectedCategory={this.state.selectedCategory} dispatch={this.props.dispatch} show={this.state.showModal && this.props.ticketCategories.errorMessage === ''} onHide={() => this.setState({ showModal: false, selectedCategory: null })} />
 
           <div className="jumbotron">
             <h1>Ticket categories</h1>
@@ -74,6 +82,7 @@ class TicketCategoryEditList extends Component {
                 <th>#</th>
                 <th>Name</th>
                 <th></th>
+                <th></th>
               </tr>
               {
                   this.props.ticketCategories.categories.map((category) => {
@@ -81,6 +90,7 @@ class TicketCategoryEditList extends Component {
                       <tr>
                         <td>{category.Id}</td>
                         <td>{category.Name}</td>
+                        <td><button onClick={()=> this.handleEdit(category)} className="btn btn-primary">Edit</button></td>
                         <td><button onClick={()=> this.props.dispatch(this.handleDelete(category.Id))} className="btn btn-danger">Delete</button></td>
                       </tr>
                     );

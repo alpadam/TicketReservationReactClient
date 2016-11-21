@@ -11,7 +11,8 @@ class HostLocationEditList extends Component {
     super(props);
     props.dispatch(this.getHostLocations());
     this.state = {
-        showModal: false
+        showModal: false,
+        selectedLocation: null
     };
   }
 
@@ -36,7 +37,6 @@ class HostLocationEditList extends Component {
   }
 
   handleDelete(id) {
-
       let request = {
         method: 'DELETE',
         headers: { 'Content-Type':'application/json',
@@ -44,9 +44,7 @@ class HostLocationEditList extends Component {
       };
 
       return dispatch => {
-
       dispatch(this.props.deleteHostLocation());
-
       return fetch('http://localhost:3253/api/hostlocation/'+ id, request)
         .then(response =>  {
           if (!response.ok) {
@@ -59,17 +57,24 @@ class HostLocationEditList extends Component {
       }
   }
 
+  handleEdit(location) {
+    this.setState({
+      showModal: true,
+      selectedLocation: location
+    });
+  }
+
   render(){
     return(
         <div className="container">
 
-          <ErrorModal show={this.props.hostLocationList.errorMessage != ''} errorMessage={this.props.hostLocationList.errorMessage} onHide={() => {this.setState({ showModal: false }); this.props.dispatch(this.props.handleError());}} />
-          <HostLocationAddModal dispatch={this.props.dispatch} show={this.state.showModal && this.props.hostLocationList.errorMessage === ''} onHide={() => this.setState({ showModal: false })} />
+          <ErrorModal show={this.props.hostLocationList.errorMessage != ''} errorMessage={this.props.hostLocationList.errorMessage} onHide={() => {this.setState({ showModal: false, selectedLocation: null}); this.props.dispatch(this.props.handleError());}} />
+          <HostLocationAddModal selectedLocation={this.state.selectedLocation} dispatch={this.props.dispatch} show={this.state.showModal && this.props.hostLocationList.errorMessage === ''} onHide={() => this.setState({ showModal: false, selectedLocation: null})} />
 
           <div className="jumbotron">
             <h1>Host locations</h1>
           </div>
-          <button onClick={()=>this.setState({ showModal: true })} className="btn btn-primary">Add new host location</button>
+          <button onClick={()=>this.setState({ showModal: true, selectedLocation: null})} className="btn btn-primary">Add new host location</button>
           <table className="table table-striped">
             <tbody>
               <tr>
@@ -80,6 +85,7 @@ class HostLocationEditList extends Component {
                 <th>Latitude</th>
                 <th>Longitude</th>
                 <th>Address</th>
+                <th></th>
                 <th></th>
               </tr>
               {
@@ -93,6 +99,7 @@ class HostLocationEditList extends Component {
                         <td>{location.Latitude}</td>
                         <td>{location.Longitude}</td>
                         <td>{location.Address}</td>
+                        <td><button onClick={()=> this.handleEdit(location)} className="btn btn-primary">Edit</button></td>
                         <td><button onClick={()=> this.props.dispatch(this.handleDelete(location.Id))} className="btn btn-danger">Delete</button></td>
                       </tr>
                     );

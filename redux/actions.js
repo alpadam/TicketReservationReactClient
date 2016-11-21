@@ -89,6 +89,23 @@ let actions = {
       errorMessage: errorMessage
     }
   },
+  editTicketCategory: function(){
+    return {
+      type: 'EDIT_TICKET_CATEGORY',
+    }
+  },
+  editTicketCategorySuccess: function(category){
+    return {
+      type: 'EDIT_TICKET_CATEGORY_SUCCESS',
+      category
+    }
+  },
+  editTicketCategoryFailure: function(errorMessage){
+    return {
+      type: 'EDIT_TICKET_CATEGORY_FAILURE',
+      errorMessage: errorMessage
+    }
+  },
   getHostLocationList: function(){
     return {
       type: 'GET_HOST_LOCATION_LIST',
@@ -125,6 +142,23 @@ let actions = {
   addHostLocationFailure: function(errorMessage){
     return {
       type: 'ADD_HOST_LOCATION_FAILURE',
+      errorMessage: errorMessage
+    }
+  },
+  editHostLocation: function(){
+    return {
+      type: 'EDIT_HOST_LOCATION'
+    }
+  },
+  editHostLocationSuccess: function(hostLocation){
+    return {
+      type: 'EDIT_HOST_LOCATION_SUCCESS',
+      hostLocation
+    }
+  },
+  editHostLocationFailure: function(errorMessage){
+    return {
+      type: 'EDIT_HOST_LOCATION_FAILURE',
       errorMessage: errorMessage
     }
   },
