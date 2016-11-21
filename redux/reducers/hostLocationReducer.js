@@ -29,6 +29,9 @@ let hostLocationReducer = function(hostLocationList = {}, action) {
           Latitude: action.hostLocation.Latitude,
           Longitude: action.hostLocation.Longitude,
           Address: action.hostLocation.Address,
+          Image: {
+            Content: action.hostLocation.Image.Content
+          }
         });
         return Object.assign({}, hostLocationList, {
           isFetching: false,
@@ -54,6 +57,8 @@ let hostLocationReducer = function(hostLocationList = {}, action) {
               location.Latitude = action.hostLocation.Latitude;
               location.Longitude = action.hostLocation.Longitude;
               location.Address = action.hostLocation.Address;
+              location.Image.Id = action.hostLocation.Image.Id;
+              location.Image.Content = action.hostLocation.Image.Content;
             };
             return location;
         });

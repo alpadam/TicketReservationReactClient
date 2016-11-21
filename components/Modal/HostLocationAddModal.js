@@ -3,9 +3,9 @@ import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import actions from '../../redux/actions';
 import FormInput from '../FormInput';
+import ImageUpload from '../ImageUpload';
 
 class HostLocationAddModal extends Component {
-
     constructor(props){
       super(props);
       this.state = {
@@ -16,12 +16,20 @@ class HostLocationAddModal extends Component {
         description: '',
         latitude: '',
         longitude: '',
-        address: ''
+        address: '',
+        image: ''
       };
     }
 
     componentWillReceiveProps(nextProps) {
       if(nextProps.selectedLocation){
+
+        if(!nextProps.selectedLocation.Image){
+          nextProps.selectedLocation.Image = {
+            Content: ''
+          }
+        }
+
         this.setState({
           isEditMode: true,
           id: this.state.id !== '' ? this.state.id : nextProps.selectedLocation.Id,
@@ -30,7 +38,8 @@ class HostLocationAddModal extends Component {
           description: this.state.description !== '' ? this.state.description : nextProps.selectedLocation.Description,
           latitude: this.state.latitude !== '' ? this.state.latitude : nextProps.selectedLocation.Latitude,
           longitude: this.state.longitude !== '' ? this.state.longitude : nextProps.selectedLocation.Longitude,
-          address: this.state.address !== '' ? this.state.address : nextProps.selectedLocation.Address
+          address: this.state.address !== '' ? this.state.address : nextProps.selectedLocation.Address,
+          image: this.state.image !== '' ? this.state.image : nextProps.selectedLocation.Image.Content
         });
       } else {
         this.setState({
@@ -41,7 +50,8 @@ class HostLocationAddModal extends Component {
           description: '',
           latitude: '',
           longitude: '',
-          address: ''
+          address: '',
+          image: ''
         });
       }
     }
@@ -60,13 +70,17 @@ class HostLocationAddModal extends Component {
           Description: this.state.description,
           Latitude: this.state.latitude,
           Longitude: this.state.longitude,
-          Address: this.state.address
+          Address: this.state.address,
+          Image: {
+            Content: this.state.image
+          }
         };
 
         let url = 'http://localhost:3253/api/hostlocation/Add';
         let request = {
           method: 'POST',
-          headers: { 'Content-Type':'application/json',
+          headers: {  'Content-Type':'application/json',
+                      'enctype': 'multipart/form-data',
                      'Authorization': 'Bearer ' + localStorage.getItem('access_token')},
           body: JSON.stringify(hostLocation)
         };
@@ -111,7 +125,7 @@ class HostLocationAddModal extends Component {
 
     render() {
       return (
-        <Modal {...this.props} bsSize="small" aria-labelledby="contained-modal-title-sm">
+        <Modal {...this.props} aria-labelledby="contained-modal-title-sm">
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-sm">Host location</Modal.Title>
           </Modal.Header>
@@ -123,7 +137,8 @@ class HostLocationAddModal extends Component {
             <FormInput name="latitude" inputText={this.state.latitude} className="form-control" placeholder="Latitude" onValueChange={this.handleChangeInput.bind(this)} />
             <FormInput name="longitude" inputText={this.state.longitude} className="form-control" placeholder="Longitude" onValueChange={this.handleChangeInput.bind(this)} />
             <FormInput name="address" inputText={this.state.address} className="form-control" placeholder="Address" onValueChange={this.handleChangeInput.bind(this)} />
-        </Modal.Body>
+            <ImageUpload name="image" inputImage={this.state.image} onValueChange={this.handleChangeInput.bind(this)}/>
+          </Modal.Body>
           <Modal.Footer>
             <Button onClick={() => this.props.dispatch(this.handleSave())}>Save</Button>
           </Modal.Footer>
