@@ -15,6 +15,21 @@ let eventDetailsReducer = function(eventDetails = {}, action) {
         isFetching: false,
         errorMessage: action.errorMessage
       });
+    case 'BUY_RESERVED_TICKETS':
+    return Object.assign({}, eventDetails, {
+      isFetching: true,
+    });
+    case 'BUY_RESERVED_TICKETS_SUCCESS':
+      return Object.assign({}, eventDetails, {
+        isFetching: false,
+        errorMessage: '',
+      });
+    case 'BUY_RESERVED_TICKETS_FAILURE':
+      return Object.assign({}, eventDetails, {
+        isFetching: false,
+        errorMessage: action.errorMessage
+      });
+
 
     default:
       return eventDetails;

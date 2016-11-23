@@ -303,3 +303,9 @@
 #backToEventListBtn{
   margin-bottom: 10px;
 }
+
+#buyTicketsBtn {
+  float: right;
+  width: 70px;
+  margin-top: 5px;
+}

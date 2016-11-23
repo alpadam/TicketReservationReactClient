@@ -211,6 +211,22 @@ let actions = {
       type: 'ADD_EVENT_USER_COMMENT_FAILURE',
       errorMessage: errorMessage
     }
+  },
+  buyReservedTickets: function(){
+    return {
+      type: 'BUY_RESERVED_TICKETS',
+    }
+  },
+  buyReservedTicketsSuccess: function(){
+    return {
+      type: 'BUY_RESERVED_TICKETS_SUCCESS',
+    }
+  },
+  buyReservedTicketsFailure: function(errorMessage){
+    return {
+      type: 'BUY_RESERVED_TICKETS_FAILURE',
+      errorMessage: errorMessage
+    }
   }
 }
 

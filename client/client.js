@@ -18,6 +18,8 @@ import EventEditItem from '../components/EventEditItem';
 import TicketCategoryEditList from '../components/TicketCategoryEditList';
 import HostLocationEditList from '../components/HostLocationEditList';
 import UserProfile from '../components/UserProfile';
+import TicketBuySuccessPage from '../components/TicketBuySuccessPage';
+import TicketBuyErrorPage from '../components/TicketBuyErrorPage';
 
 let initialState = {
   auth : {
@@ -65,6 +67,8 @@ render(
         <Route path="input" component={RequireAuth(TodoInput)} />
         <Route path="userProfile" component={RequireAuth(UserProfile)} />
         <Route path="events/:id" component={EventDetailedItem} />
+        <Route path="buySuccess" component={TicketBuySuccessPage} />
+        <Route path="buyError" component={TicketBuyErrorPage} />
 
         <Route path="admin/event/add" component={RequireAdmin(EventEditItem)} />
         <Route path="admin/event/:id/edit" component={RequireAdmin(EventEditItem)} />
