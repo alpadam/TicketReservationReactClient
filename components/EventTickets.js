@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import {IntlProvider, FormattedDate} from 'react-intl';
+import EventTicketBuy from './EventTicketBuy';
+import { connect } from 'react-redux';
+import actions from '../redux/actions';
 
 class EventTickets extends Component {
 
@@ -20,7 +23,10 @@ class EventTickets extends Component {
       )
     }else{
       return(
-        <div>buy tickets !</div>
+        <div>
+          <h2>Buy tickets</h2>
+          <EventTicketBuy eventId={this.props.eventId} eventTickets={this.props.eventTickets} dispatch={this.props.dispatch}/>
+        </div>
       )
     }
   }
@@ -37,13 +43,13 @@ class EventTickets extends Component {
                 })}
             </ul>
           </div>
+          </div>
           <div className="col-lg-12">
             {this.checkIsAuthenticated()}
           </div>
-        </div>
       </div>
     )
   }
 };
 
-export default EventTickets
+export default connect(null, actions)(EventTickets)

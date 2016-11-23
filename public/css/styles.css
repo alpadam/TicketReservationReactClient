@@ -241,6 +241,12 @@
   width: 100%;
 }
 
+#locationGoogleMaps{
+  height: 300px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 
 /*USER COMMENTS*/
 
@@ -296,6 +302,12 @@
 
 #backToEventListBtn{
   margin-bottom: 10px;
+}
+
+#buyTicketsBtn {
+  float: right;
+  width: 70px;
+  margin-top: 5px;
 }
 
 .form-control {

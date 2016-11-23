@@ -8,8 +8,6 @@ class EventItem extends Component {
     if(this.props.event.IsSuspended)
     {
       return (<p>Buying tickets is <b>suspended</b>!</p>)
-    } else{
-      return (<p>Tickets from <b>1300 HUF</b></p>)
     }
   }
 
@@ -51,7 +49,6 @@ class EventItem extends Component {
           </div>
             <div className="eventbuttons">
               <button className="btn-eventroom">{this.props.event.Location.Name}</button>
-              <button className="btn-tonight">Today!</button>
             </div>
           </div>
         </div>
