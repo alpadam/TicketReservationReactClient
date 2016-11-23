@@ -55,6 +55,62 @@ let actions = {
       errorMessage: errorMessage
     }
   },
+  addEvent: function(){
+    return {
+      type: 'ADD_EVENT',
+    }
+  },
+  addEventSuccess: function(event){
+    return {
+      type: 'ADD_EVENT_SUCCESS',
+      event
+    }
+  },
+  addEventFailure: function(errorMessage){
+    return {
+      type: 'ADD_EVENT_FAILURE',
+      errorMessage: errorMessage
+    }
+  },
+  suspendEvent: function(){
+    return {
+      type: 'SUSPEND_EVENT'
+    }
+  },
+  suspendEvent: function(){
+    return {
+      type: 'SUSPEND_EVENT'
+    }
+  },
+  suspendEventSuccess: function(id){
+    return {
+      type: 'SUSPEND_EVENT_SUCCESS',
+      id: id
+    }
+  },
+  suspendEventFailure: function(errorMessage){
+    return {
+      type: 'SUSPEND_EVENT_FAILURE',
+      errorMessage: errorMessage
+    }
+  },
+  closeEvent: function(){
+    return {
+      type: 'CLOSE_EVENT'
+    }
+  },
+  closeEventSuccess: function(id){
+    return {
+      type: 'CLOSE_EVENT_SUCCESS',
+      id: id
+    }
+  },
+  closeEventFailure: function(errorMessage){
+    return {
+      type: 'CLOSE_EVENT_FAILURE',
+      errorMessage: errorMessage
+    }
+  },
   getTicketCategoriesList: function(){
     return {
       type: 'GET_CATEGORY_LIST',

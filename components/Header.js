@@ -25,7 +25,7 @@ class Header extends React.Component {
     } else if(this.props.isAdmin) {
       return [
           <li className="nav-item" key={1}>
-            <Link className="nav-link" to="/admin/event/add">Add new event</Link>
+            <Link className="nav-link" to="/admin/events">Events</Link>
           </li>,
           <li className="nav-item" key={2}>
             <Link className="nav-link" to="/admin/ticketcategories">Ticket categories</Link>
