@@ -7,7 +7,7 @@ class EventLocationDetails extends Component {
     return(
       <div className="serviceinfo row hidden-xs">
           <h2 className="locationName">{this.props.Location.Name}</h2>
-          <img src="/public/img/concert.jpg" />
+          <img src={this.props.Location.Image.Content} />
           <div className="col-sm-12" >
             {this.props.Location.Description}
             </div>

@@ -43,9 +43,14 @@ class EventDetailedItem extends Component {
     if(this.props.eventDetails.isFetching){
       return <LoadingComponent/>
     }else{
+      if(!this.props.eventDetails.errorMessage){
+        var headerStyle = {
+          backgroundImage: "url("+ this.props.eventDetails.event.Image.Content + ")"
+        }
+        
         return(
           <div>
-            <div className="header">
+            <div className="header" style={headerStyle}>
               <div className="container">
                   <h1 className="header-title">{this.props.eventDetails.event.Name}</h1>
               </div>
@@ -78,7 +83,8 @@ class EventDetailedItem extends Component {
                       eventId={this.props.eventDetails.event.Id}
                       isLoggedIn={this.props.auth.isAuthenticated}
                       eventTickets={this.props.eventDetails.event.EventTickets}
-                      IsSuspended={this.props.eventDetails.event.IsSuspended}/>
+                      IsSuspended={this.props.eventDetails.event.IsSuspended}
+                      IsClosed={this.props.eventDetails.event.IsClosed}/>
                   <EventComments
                       dispatch={this.props.dispatch}
                       eventId={this.props.eventDetails.event.Id}
@@ -95,6 +101,21 @@ class EventDetailedItem extends Component {
             </div>
           </div>
         )
+      }else{
+        return(
+          <div className="container">
+            <h1>Error!</h1>
+            <p>We are really sorry, event not found! :(</p>
+            <p>Check the console output!</p>
+            <br/>
+            <Link to="/">
+              <button className="btn btn-danger" id="backToEventListBtn">
+                <span className="glyphicon glyphicon-chevron-left" aria-hidden="true"/> Back to Events
+              </button>
+            </Link>
+          </div>
+        )
+        }
       }
   }
 

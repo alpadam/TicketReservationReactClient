@@ -78,11 +78,19 @@ class EventComments extends Component {
     if(this.props.eventComments.isFetching){
       return <LoadingComponent/>
     }else{
-      return(
-        this.props.eventComments.comments.map((userComment) => {
-          return <EventCommentItem key={userComment.Id} userComment={userComment}/>
-        })
-      )
+      if(this.props.eventComments.comments.length === 0 ){
+        return(
+          <div className="col-lg-12">
+              <p>There aren't any comments for this event!</p>
+          </div>
+        )
+      }else{
+        return(
+          this.props.eventComments.comments.map((userComment) => {
+            return <EventCommentItem key={userComment.Id} userComment={userComment}/>
+          })
+        )
+      }
     }
   }
 

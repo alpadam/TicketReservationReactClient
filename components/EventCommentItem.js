@@ -7,7 +7,7 @@ class EventCommentsItem extends Component {
     return(
       <div className="row">
         <div className="col-lg-12">
-          <div className="col-lg-12">
+          <div className="col-lg-12" id="commentPanel">
           <div className="panel panel-default">
               <div className="panel-heading">
                 <strong>{this.props.userComment.User.UserName}</strong>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../redux/actions';
+import Footer from './Footer'
 
 import Header from './Header';
 
@@ -11,6 +12,7 @@ class App extends Component {
       <div>
         <Header isAuthenticated={this.props.auth.isAuthenticated} isAdmin={this.props.auth.isAdmin} actions={this.props.actions} />
         {React.cloneElement(this.props.children, this.props)}
+        <Footer/>
       </div>
     )
   }

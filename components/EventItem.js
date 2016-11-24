@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import {IntlProvider, FormattedDate} from 'react-intl';
+import {IntlProvider, FormattedTime} from 'react-intl';
 
 class EventItem extends Component {
 
@@ -8,6 +8,8 @@ class EventItem extends Component {
     if(this.props.event.IsSuspended)
     {
       return (<p>Buying tickets is <b>suspended</b>!</p>)
+    }else if(this.props.event.IsClosed){
+      return (<p>Event is <b>closed</b>!</p>)
     }
   }
 
@@ -17,7 +19,7 @@ class EventItem extends Component {
         <div className="forty">
           <div className="img-container">
             <Link to={"/events/" + this.props.event.Id} >
-              <img className="img" src="/public/img/concert.jpg"/>
+              <img className="img" src={this.props.event.Image.Content}/>
             </Link>
           </div>
         </div>
@@ -40,11 +42,11 @@ class EventItem extends Component {
         <div className="twenty">
           <div className="date">
             <IntlProvider locale="en">
-              <FormattedDate
-                value={this.props.event.Date}
-                day="numeric"
-                month="long"
-                year="numeric"/>
+                <FormattedTime
+                  value={this.props.event.Date}
+                  day="numeric"
+                  month="long"
+                  year="numeric"/>
             </IntlProvider>
           </div>
             <div className="eventbuttons">

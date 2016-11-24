@@ -11,7 +11,7 @@ import commentReducer from './commentReducer'
 const rootReducer = combineReducers({
   auth: authReducer,
   todos: todoReducer,
-  user: userReducer,
+  userDetails: userReducer,
   eventList: eventReducer,
   ticketCategories: ticketCategoryReducer,
   hostLocationList: hostLocationReducer,

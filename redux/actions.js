@@ -317,7 +317,24 @@ let actions = {
       type: 'BUY_RESERVED_TICKETS_FAILURE',
       errorMessage: errorMessage
     }
-  }
+  },
+  getUserDetails: function(){
+    return {
+      type: 'GET_USER_DETAILS',
+    }
+  },
+  getUserDetailsSuccess: function(user){
+    return {
+      type: 'GET_USER_DETAILS_SUCCESS',
+      user
+    }
+  },
+  getUserDetailsFailure: function(errorMessage){
+    return {
+      type: 'GET_USER_DETAILS_FAILURE',
+      errorMessage: errorMessage
+    }
+  },
 }
 
 export default actions;

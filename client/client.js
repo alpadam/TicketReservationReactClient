@@ -52,6 +52,11 @@ let initialState = {
     isFetching: false,
     errorMessage: '',
     comments: []
+  },
+  userDetails : {
+    isFetching: false,
+    errorMessage: '',
+    user: {}
   }
 };
 

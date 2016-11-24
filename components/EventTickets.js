@@ -14,11 +14,18 @@ class EventTickets extends Component {
         In order to buy tickets, please <b>log in</b>!
       </div>
       )
-    }else if(this.props.isSuspended){
+    }else if(this.props.IsSuspended){
       return (
       <div className="alert alert-danger" role="alert">
         <span className="glyphicon glyphicon-info-sign" aria-hidden="true"> </span>
         Buying tickets is currently <b>suspended</b> for this event!
+      </div>
+      )
+    }else if(this.props.IsClosed){
+      return (
+      <div className="alert alert-danger" role="alert">
+        <span className="glyphicon glyphicon-info-sign" aria-hidden="true"> </span>
+        We are sorry, event is <b>closed</b>!
       </div>
       )
     }else{

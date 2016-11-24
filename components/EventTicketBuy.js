@@ -3,6 +3,7 @@ import actions from '../redux/actions';
 import { connect } from 'react-redux';
 import FormInputNumber from './FormInputNumber';
 import { browserHistory } from 'react-router';
+import TicketPriceSum from './TicketPriceSum';
 
 
 class EventTicketBuy extends Component {
@@ -22,14 +23,11 @@ class EventTicketBuy extends Component {
     var reservedTickets = [];
 
     for (var key in this.state) {
-      console.log(key, this.state[key]);
       reservedTickets.push({
         EventTicketId : key,
         Quantity : this.state[key]
       })
     };
-
-    console.log(reservedTickets);
 
     let request = {
       method: 'POST',
@@ -51,8 +49,6 @@ class EventTicketBuy extends Component {
           browserHistory.push('/buyError');
         } else {
           this.props.buyReservedTicketsSuccess();
-          //this.setState({ Text: ''});
-          //return this.props.dispatch(this.getEventDetails(this.props.eventId));
           browserHistory.push('/buySuccess');
        }
     }).catch(err => {
@@ -75,6 +71,7 @@ class EventTicketBuy extends Component {
                 </div>
                 )
           })}
+          <TicketPriceSum tickets={this.props.eventTickets} quantities={this.state} />
           <button id="buyTicketsBtn" className="btn btn-primary" onClick={() => this.props.dispatch(this.handleBuyTickets())}>
             <span className="glyphicon glyphicon-usd" aria-hidden="true"/> Buy
           </button>

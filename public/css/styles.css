@@ -184,7 +184,6 @@
     margin: auto;
     background-size: 100%;
     background-repeat: no-repeat;
-    background-image: url(/public/img/concert.jpg);
 }
 
 #event-details .header .header-title {
@@ -247,6 +246,10 @@
   margin-bottom: 15px;
 }
 
+#sumPrice {
+  text-align: end;
+}
+
 
 /*USER COMMENTS*/
 
@@ -274,7 +277,7 @@
 	margin-top:1px;
 	margin-left:2px;
 }
-.panel>.panel-heading:before{
+#commentPanel .panel>.panel-heading:before{
 	border-right-color:#ddd;
 	border-width:8px;
 }
@@ -334,4 +337,8 @@
 .previewText {
   width: 100%;
   margin-top: 20px;
+}
+
+footer .container p {
+  text-align: center;
 }

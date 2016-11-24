@@ -64,6 +64,7 @@ class Login extends Component {
 
   render() {
     return(
+      <div className="container">
         <div className="col-md-6 col-md-offset-3">
           <h2 className="text-center">Log In</h2>
           <FormInput name="username" className="form-control" placeholder="Username" onValueChange={this.handleChangeInput.bind(this)} />
@@ -71,6 +72,7 @@ class Login extends Component {
           <div className="help-block">{this.props.auth.errorMessage}</div>
           <button onClick={(event) => this.props.dispatch(this.handleFormSubmit(event))} className="btn btn-primary">Sign In</button>
         </div>
+      </div>
     );
   }
 }
