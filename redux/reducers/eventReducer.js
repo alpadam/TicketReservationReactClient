@@ -53,8 +53,8 @@ let eventReducer = function(eventList = {}, action) {
         });
       case 'SUSPEND_EVENT_SUCCESS':
         eventList.events = eventList.events.filter(function(event) {
-            if(event.Id === action.id){
-              event.IsSuspended = true;
+            if(event.Id === action.id) {
+              event.IsSuspended = !event.IsSuspended;
             }
             return event;
         });

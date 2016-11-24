@@ -5,7 +5,6 @@ import actions from '../redux/actions';
 import EventAddModal from './Modal/EventAddModal';
 import ErrorModal from './Modal/ErrorModal';
 import EventTicketRow from './EventTicketRow';
-
 import {IntlProvider, FormattedTime} from 'react-intl';
 
 class EventEditList extends Component {
@@ -184,7 +183,12 @@ class EventEditList extends Component {
                           }
                         </ul>
                       </td>
-                      <td><button onClick={()=> this.props.dispatch(this.handleSuspend(event.Id))} className="btn btn-warning">Suspend</button></td>
+                      {event.IsSuspended &&
+                        <td><button onClick={()=> this.props.dispatch(this.handleSuspend(event.Id))} className="btn btn-warning">Reopen</button></td>
+                      }
+                      {!event.IsSuspended &&
+                        <td><button onClick={()=> this.props.dispatch(this.handleSuspend(event.Id))} className="btn btn-warning">Suspend</button></td>
+                      }
                       <td><button onClick={()=> this.props.dispatch(this.handleClose(event.Id))} className="btn btn-danger">Close</button></td>
                     </tr>
                   );
@@ -192,6 +196,7 @@ class EventEditList extends Component {
               }
             </tbody>
           </table>
+          <ChartStatistics />
         </div>
     );
   }
