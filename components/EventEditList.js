@@ -196,7 +196,6 @@ class EventEditList extends Component {
               }
             </tbody>
           </table>
-          <ChartStatistics />
         </div>
     );
   }

@@ -40,12 +40,9 @@ class Header extends React.Component {
     } else {
       return [
           <li className="nav-item" key={1}>
-            <Link className="nav-link" to="/input">Todo input</Link>
-          </li>,
-          <li className="nav-item" key={2}>
             <Link className="nav-link" to="/userProfile">User profile</Link>
           </li>,
-          <li key ={3}>
+          <li key={2}>
             <button id="logoutBtn" type="button" onClick={(event) => this.logout()} className="btn btn-default navbar-btn btn-danger">Log out</button>
           </li>
       ];
